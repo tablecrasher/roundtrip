@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"ride-sharing/services/trip-service/internal/domain"
-	"ride-sharing/shared/types"
+	"roundtrip/services/trip-service/internal/domain"
+	"roundtrip/shared/types"
 )
 
 type HttpHandler struct {

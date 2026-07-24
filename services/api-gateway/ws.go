@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"ride-sharing/shared/contracts"
-	"ride-sharing/shared/util"
+	"roundtrip/shared/contracts"
+	"roundtrip/shared/util"
 
 	"github.com/gorilla/websocket"
 )

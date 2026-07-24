@@ -3,9 +3,9 @@ package grpc
 import (
 	"context"
 	"log"
-	"ride-sharing/services/trip-service/internal/domain"
-	pb "ride-sharing/shared/proto/trip"
-	"ride-sharing/shared/types"
+	"roundtrip/services/trip-service/internal/domain"
+	pb "roundtrip/shared/proto/trip"
+	"roundtrip/shared/types"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

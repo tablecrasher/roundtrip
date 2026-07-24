@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 	"fmt"
-	"ride-sharing/services/trip-service/internal/domain"
+	"roundtrip/services/trip-service/internal/domain"
 )
 
 type inmemRepository struct {

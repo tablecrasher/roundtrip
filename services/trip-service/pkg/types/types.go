@@ -1,6 +1,6 @@
 package types
 
-import pb "ride-sharing/shared/proto/trip"
+import pb "roundtrip/shared/proto/trip"
 
 type OsrmApiResponse struct {
 	Routes []struct {

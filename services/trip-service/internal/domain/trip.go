@@ -2,10 +2,10 @@ package domain
 
 import (
 	"context"
-	"ride-sharing/shared/types"
+	"roundtrip/shared/types"
 
-	tripTypes "ride-sharing/services/trip-service/pkg/types"
-	pb "ride-sharing/shared/proto/trip"
+	tripTypes "roundtrip/services/trip-service/pkg/types"
+	pb "roundtrip/shared/proto/trip"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

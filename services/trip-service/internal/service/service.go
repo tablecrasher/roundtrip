@@ -7,10 +7,10 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"ride-sharing/services/trip-service/internal/domain"
-	tripTypes "ride-sharing/services/trip-service/pkg/types"
-	"ride-sharing/shared/proto/trip"
-	"ride-sharing/shared/types"
+	"roundtrip/services/trip-service/internal/domain"
+	tripTypes "roundtrip/services/trip-service/pkg/types"
+	"roundtrip/shared/proto/trip"
+	"roundtrip/shared/types"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

@@ -1,7 +1,7 @@
 package domain
 
 import (
-	pb "ride-sharing/shared/proto/trip"
+	pb "roundtrip/shared/proto/trip"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

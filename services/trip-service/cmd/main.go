@@ -6,9 +6,9 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"ride-sharing/services/trip-service/internal/infrastructure/grpc"
-	"ride-sharing/services/trip-service/internal/infrastructure/repository"
-	"ride-sharing/services/trip-service/internal/service"
+	"roundtrip/services/trip-service/internal/infrastructure/grpc"
+	"roundtrip/services/trip-service/internal/infrastructure/repository"
+	"roundtrip/services/trip-service/internal/service"
 	"syscall"
 
 	grpcserver "google.golang.org/grpc"

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"ride-sharing/services/api-gateway/grpc_clients"
-	"ride-sharing/shared/contracts"
+	"roundtrip/services/api-gateway/grpc_clients"
+	"roundtrip/shared/contracts"
 )
 
 func handleTripStart(w http.ResponseWriter, r *http.Request) {

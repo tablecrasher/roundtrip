@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"ride-sharing/shared/env"
+	"roundtrip/shared/env"
 )
 
 var (

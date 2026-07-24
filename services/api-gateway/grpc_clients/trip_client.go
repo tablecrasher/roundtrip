@@ -2,7 +2,7 @@ package grpc_clients
 
 import (
 	"os"
-	pb "ride-sharing/shared/proto/trip"
+	pb "roundtrip/shared/proto/trip"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
