@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: trip-service
-          image: europe-west1-docker.pkg.dev/{{PROJECT_ID}}/roundtrip/trip-service
+          image: europe-west1-docker.pkg.dev/roundtrip-503423/roundtrip/trip-service
           ports:
             - containerPort: 8083
           resources:
