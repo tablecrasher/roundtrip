@@ -6,6 +6,8 @@ import (
 	"net"
 	"os"
 	"os/signal"
+	"roundtrip/shared/env"
+	"roundtrip/shared/messaging"
 	"roundtrip/services/trip-service/internal/infrastructure/grpc"
 	"roundtrip/services/trip-service/internal/infrastructure/repository"
 	"roundtrip/services/trip-service/internal/service"
@@ -17,6 +19,7 @@ import (
 var GrpcAddr = ":9093"
 
 func main() {
+	rabbitMqURI := env.GetString("RABBITMQ_URI", "amqp://guest:guest@rabbitmq:5672/")
 	inmemRepo := repository.NewInmemRepository()
 	svc := service.NewService(inmemRepo)
 
@@ -34,6 +37,15 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+
+	// RabbitMQ connection
+	rabbitmq, err := messaging.NewRabbitMQ(rabbitMqURI)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rabbitmq.Close()
+
+	log.Println("Starting RabbitMQ connection")
 
 	// Starting the gRPC server
 	grpcServer := grpcserver.NewServer()
