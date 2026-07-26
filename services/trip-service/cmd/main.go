@@ -6,11 +6,12 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"roundtrip/shared/env"
-	"roundtrip/shared/messaging"
+	"roundtrip/services/trip-service/internal/infrastructure/events"
 	"roundtrip/services/trip-service/internal/infrastructure/grpc"
 	"roundtrip/services/trip-service/internal/infrastructure/repository"
 	"roundtrip/services/trip-service/internal/service"
+	"roundtrip/shared/env"
+	"roundtrip/shared/messaging"
 	"syscall"
 
 	grpcserver "google.golang.org/grpc"
@@ -47,10 +48,12 @@ func main() {
 
 	log.Println("Starting RabbitMQ connection")
 
+	publisher := events.NewTripEventPublisher(rabbitmq)
+
 	// Starting the gRPC server
 	grpcServer := grpcserver.NewServer()
+	grpc.NewGRPCHandler(grpcServer, svc, publisher)
 
-	grpc.NewGRPCHandler(grpcServer, svc)
 	log.Printf("Starting gRPC server Trip service on port %s", lis.Addr().String())
 
 	go func() {
