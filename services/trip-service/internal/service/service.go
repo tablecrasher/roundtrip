@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"roundtrip/services/trip-service/internal/domain"
 	tripTypes "roundtrip/services/trip-service/pkg/types"
+	pbd "roundtrip/shared/proto/driver"
 	"roundtrip/shared/proto/trip"
 	"roundtrip/shared/types"
 
@@ -156,4 +157,12 @@ func getBaseFares() []*domain.RideFareModel {
 			TotalPriceInCents: 1000,
 		},
 	}
+}
+
+func (s *service) GetTripByID(ctx context.Context, id string) (*domain.TripModel, error) {
+	return s.repo.GetTripByID(ctx, id)
+}
+
+func (s *service) UpdateTrip(ctx context.Context, tripID string, status string, driver *pbd.Driver) error {
+	return s.repo.UpdateTrip(ctx, tripID, status, driver)
 }
