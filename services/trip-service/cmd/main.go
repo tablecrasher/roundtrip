@@ -10,6 +10,7 @@ import (
 	"roundtrip/services/trip-service/internal/infrastructure/grpc"
 	"roundtrip/services/trip-service/internal/infrastructure/repository"
 	"roundtrip/services/trip-service/internal/service"
+	"roundtrip/shared/db"
 	"roundtrip/shared/env"
 	"roundtrip/shared/messaging"
 	"roundtrip/shared/tracing"
@@ -36,6 +37,17 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	defer sh(ctx)
+
+	// Initialize MongoDB
+	mongoClient, err := db.NewMongoClient(ctx, db.NewMongoDefaultConfig())
+	if err != nil {
+		log.Fatalf("Failed to initialize MongoDB, err: %v", err)
+	}
+	defer mongoClient.Disconnect(ctx)
+
+	mongoDb := db.GetDatabase(mongoClient, db.NewMongoDefaultConfig())
+
+	log.Printf(mongoDb.Name())
 
 	rabbitMqURI := env.GetString("RABBITMQ_URI", "amqp://guest:guest@rabbitmq:5672/")
 
