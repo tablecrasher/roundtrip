@@ -36,6 +36,8 @@ func handleRidersWebSocket(w http.ResponseWriter, r *http.Request, rb *messaging
 	// Initialize queue consumers
 	queues := []string{
 		messaging.NotifyDriverNoDriversFoundQueue,
+		messaging.NotifyDriverAssignQueue,
+		messaging.NotifyPaymentSessionCreatedQueue,
 	}
 
 	for _, q := range queues {
@@ -64,9 +66,6 @@ func handleDriversWebSocket(w http.ResponseWriter, r *http.Request, rb *messagin
 		return
 	}
 
-	// Add connection to manager
-	connManager.Add(userID, conn)
-
 	defer conn.Close()
 
 	userID := r.URL.Query().Get("userID")
@@ -80,6 +79,9 @@ func handleDriversWebSocket(w http.ResponseWriter, r *http.Request, rb *messagin
 		log.Println("No package slug provided")
 		return
 	}
+
+	// Add connection to manager
+	connManager.Add(userID, conn)
 
 	ctx := r.Context()
 
