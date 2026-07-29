@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: trip-service
-          image: europe-west1-docker.pkg.dev/roundtrip-503423/roundtrip/trip-service
+          image: roundtrip/trip-service
           ports:
             - containerPort: 9093
           resources:
@@ -24,7 +24,7 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "200m"
-            env:
+          env:
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:

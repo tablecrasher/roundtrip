@@ -1,14 +1,13 @@
 package events
-package events
 
 import (
 	"context"
 	"encoding/json"
 	"log"
 
-	"ride-sharing/services/trip-service/internal/domain"
-	"ride-sharing/shared/contracts"
-	"ride-sharing/shared/messaging"
+	"roundtrip/services/trip-service/internal/domain"
+	"roundtrip/shared/contracts"
+	"roundtrip/shared/messaging"
 
 	"github.com/rabbitmq/amqp091-go"
 )

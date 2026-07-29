@@ -74,7 +74,7 @@ func handleTripPreview(w http.ResponseWriter, r *http.Request) {
 	// Why we need to create a new client for each connection:
 	// because if a service is down, we don't want to block the whole application
 	// so we create a new client for each connection
-	tripPreview, err := tripService.Client.PreviewTrip(ctx, reqBody.toProto())
+	tripService, err := grpc_clients.NewTripServiceClient()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -82,7 +82,7 @@ func handleTripPreview(w http.ResponseWriter, r *http.Request) {
 	// Don't forget to close the client to avoid resource leaks!
 	defer tripService.Close()
 
-	tripPreview, err := tripService.Client.PreviewTrip(r.Context(), reqBody.toProto())
+	tripPreview, err := tripService.Client.PreviewTrip(ctx, reqBody.toProto())
 	if err != nil {
 		log.Printf("Failed to preview a trip: %v", err)
 		http.Error(w, "Failed to preview trip", http.StatusInternalServerError)

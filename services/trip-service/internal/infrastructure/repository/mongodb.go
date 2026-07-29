@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"ride-sharing/services/trip-service/internal/domain"
-	"ride-sharing/shared/db"
-	pbd "ride-sharing/shared/proto/driver"
+	"roundtrip/services/trip-service/internal/domain"
+	"roundtrip/shared/db"
+	pbd "roundtrip/shared/proto/driver"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

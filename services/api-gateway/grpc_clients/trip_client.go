@@ -20,8 +20,6 @@ func NewTripServiceClient() (*tripServiceClient, error) {
 		tripServiceURL = "trip-service:9093"
 	}
 
-	conn, err := grpc.NewClient(tripServiceURL,
-		grpc.WithTransportCredentials(insecure.NewCredentials()))
 	dialOptions := append(
 		tracing.DialOptionsWithTracing(),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),

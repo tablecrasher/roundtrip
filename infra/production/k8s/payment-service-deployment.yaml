@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: roundtrip/payment-service
+          image: europe-west1-docker.pkg.dev/roundtrip-503423/roundtrip/payment-service
           ports:
             - containerPort: 9004
           resources:
@@ -27,11 +27,13 @@ spec:
               memory: "128Mi"
               cpu: "200m"
           env:
-            - name: JAEGER_ENDPOINT
+            # Stripe credentials
+            - name: STRIPE_SECRET_KEY
               valueFrom:
-                configMapKeyRef:
-                  key: JAEGER_ENDPOINT
-                  name: app-config
+                secretKeyRef:
+                  name: stripe-secrets
+                  key: stripe-secret-key
+
             - name: STRIPE_SUCCESS_URL
               valueFrom:
                 configMapKeyRef:
@@ -42,11 +44,6 @@ spec:
                 configMapKeyRef:
                   name: app-config
                   key: STRIPE_CANCEL_URL
-            - name: STRIPE_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: stripe-secrets
-                  key: stripe-secret-key
 
             # RabbitMQ credentials
             - name: RABBITMQ_URI
@@ -54,6 +51,13 @@ spec:
                 secretKeyRef:
                   name: rabbitmq-credentials
                   key: uri
+
+            # Jaeger endpoint
+            - name: JAEGER_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: JAEGER_ENDPOINT
 ---
 apiVersion: v1
 kind: Service
